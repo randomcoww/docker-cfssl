@@ -5,7 +5,6 @@ FROM golang:alpine as BUILD
 ENV VERSION 1.3.1
 
 WORKDIR /go/src/github.com/cloudflare/cfssl
-COPY . .
 
 RUN set -x \
   \
