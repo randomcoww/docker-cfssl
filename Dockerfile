@@ -26,6 +26,7 @@ RUN set -x \
 FROM alpine:latest
 
 COPY --from=BUILD /go/bin /usr/local/bin/
+COPY gencert_wrapper.sh /gencert_wrapper.sh
 
 EXPOSE 8888
 
