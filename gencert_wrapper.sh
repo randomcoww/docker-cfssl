@@ -10,9 +10,11 @@ while getopts "p:o:" opt; do
   esac
 done
 
-echo -en "$CSR" > /tmp/csr.json
 echo -en "$CONFIG" > /tmp/config.json
 
-cfssl gencert \
+cfssl info \
+  -config /tmp/config.json | cfssljson -bare $output-ca
+
+echo -en "$CSR" | cfssl gencert \
   -config /tmp/config.json \
-  -profile $profile /tmp/csr.json | cfssljson -bare $output
+  -profile $profile - | cfssljson -bare $output
