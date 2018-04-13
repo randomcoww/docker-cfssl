@@ -2,7 +2,7 @@
 
 FROM golang:alpine as BUILD
 
-ENV VERSION 1.3.1
+ENV VERSION 1.3.2
 
 WORKDIR /go/src/github.com/cloudflare/cfssl
 
@@ -23,7 +23,7 @@ RUN set -x \
   && cp -R /go/src/github.com/cloudflare/cfssl_trust /etc/cfssl \
   && go install ./cmd/...
 
-FROM alpine:latest
+FROM alpine:edge
 
 COPY --from=BUILD /go/bin /usr/local/bin/
 COPY gencert_wrapper.sh /gencert_wrapper.sh
